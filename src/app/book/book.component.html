@@ -1,0 +1,125 @@
+<div tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalCenterTitle">
+          <button (click)="goBack()" class="btn btn-secondary"><span><i class="fa fa-arrow-left"></i>
+              Back</span></button> {{title}} Book
+        </h5>
+
+
+        <span style="
+  float: right;
+  z-index: 100000;
+
+  " *ngIf="show" id="alertz" class="alert alert-{{style}} alert-dismissible fade show" role="alert">
+          <strong><span><i class="fa fa-{{alertIcon}}"></i></span>&nbsp;{{alertMsg}}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </span>
+
+      </div>
+      <div class="modal-body">
+        <form #form [formGroup]="bookForm">
+          <table class="table table-bordered table-striped table-hover">
+
+            <tbody>
+
+              <tr>
+                <td><strong>Title</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="text" placeholder="book title eg oliver Twist"
+                    formControlName="name" (keyup)="searchBooks($event)" />
+                  <div *ngIf="
+                  (bookForm.controls.name.errors &&
+                  bookForm.controls.name.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please enter book Title
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Isbn</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="text"
+                    placeholder="978-0553XXXXXX" formControlName="isbn" />
+                  <div *ngIf="
+                  (bookForm.controls.isbn.errors &&
+                  bookForm.controls.isbn.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please enter Isbn
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>No of Pages</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="text"
+                    placeholder="no of pages " formControlName="number_of_pages" />
+                  <div *ngIf="
+                  (bookForm.controls.number_of_pages.errors &&
+                  bookForm.controls.number_of_pages.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please enter No of pages
+                  </div>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td><strong>publisher</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="text"
+                    placeholder="publisher e.g Charles Dikens" formControlName="publisher" />
+                  <div *ngIf="
+                  (bookForm.controls.publisher.errors &&
+                  bookForm.controls.publisher.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please enter publisher
+                  </div>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td><strong>Country</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="text"
+                    placeholder="country e.g Nigeria" formControlName="country" />
+                  <div *ngIf="
+                  (bookForm.controls.country.errors &&
+                  bookForm.controls.country.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please enter country
+                  </div>
+                </td>
+              </tr>
+
+
+              
+
+              <tr>
+                <td><strong>Released Date</strong></td>
+                <td> <input class="form-control ng-untouched ng-pristine ng-valid" type="date" formControlName="released" />
+
+                  <div *ngIf="
+                  (bookForm.controls.released.errors &&
+                  bookForm.controls.released.touched)
+              " class="alert alert-danger">
+                    <i class="fa fa-info-circle"></i> &nbsp; Please select a Released Date
+                  </div>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </form>
+
+        <div>
+
+          <button  (click)="createUpdateBook()" class="btn btn-secondary">
+            <span>{{actionButtonText}} &nbsp; <i class="fa fa-{{actionButtonIcon}}"></i> </span></button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

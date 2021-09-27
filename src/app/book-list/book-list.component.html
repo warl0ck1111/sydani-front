@@ -1,0 +1,164 @@
+<div class="jumbotron">
+  <h1 class="display-4">Book </h1>
+  <p class="lead">Manage all your books in one place.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a routerLink="/create" class="btn btn-primary btn-lg" href="#" role="button">New Book&nbsp;<i
+        class="fa fa-plus-circle"></i></a>
+  </p>
+</div>
+<div class="col-md-12">
+
+  <!-- the toast view -->
+  <span style="
+  position:fixed;
+  float: right;
+  z-index: 100000;
+  margin-left: 70%;
+
+  " *ngIf="show" id="alertz" class="alert alert-{{style}} alert-dismissible fade show" role="alert">
+    <strong><span><i class="fa fa-{{alertIcon}}"></i></span>&nbsp;{{alertMsg}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </span>
+  <!-- the end toast view -->
+
+
+
+
+  <div class="center-text ">
+    <h2>Book List</h2>
+  </div>
+  <div class="container-fluid " id="content-body">
+    <div class="form-row">
+
+    </div>
+    <br>
+
+    <!-- <form #form [formGroup]="searchBookForm">
+      <tr>
+        <td><strong>Search</strong></td>
+        <td style="width: max-content;"> <input class="form-control ng-untouched ng-pristine ng-valid" type="text"
+            placeholder="search book eg A game of thrones" (change)="create()" formControlName="search" />
+          <div *ngIf="
+          (searchBookForm.controls.search.errors &&
+          searchBookForm.controls.search.touched)
+      " class="alert alert-danger">
+            <i class="fa fa-info-circle"></i> &nbsp;  enter book Title to search
+          </div>
+        </td>
+      </tr>
+    </form> -->
+
+
+
+    <br>
+    <br>
+    <div>
+      <table class="table  table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><b>S/N</b></th>
+            <th><b>NAME</b></th>
+            <th><b>ISBN</b></th>
+            <th><b>NO OF PAGES</b></th>
+            <th><b>PUBLISHER</b></th>
+            <th><b>COUNTRY</b></th>
+            <th><b>RELEASED DATE</b></th>
+            <th><b>ACTION</b></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor='let book of bookList; let i = index'>
+
+            <td>{{ i + 1 }}</td>
+            <td>{{ book?.name || "N/A" }}</td>
+            <td>{{ book?.isbn || "N/A" }}</td>
+            <td>{{ (book?.number_of_pages ) || 'N/A' }}</td>
+            <td>{{ (book?.publisher ) || 'N/A' }}</td>
+            <td>{{ (book?.country ) || 'N/A' }}</td>
+            <td>{{ (book.released ) || 'N/A' }}</td>
+
+
+            <td><button style="width: 12exs; " class="btn btn-success" (click)="gotoEditBook(book)"><span>Edit&nbsp;<i
+                    class="fa fa-edit"></i></span></button>
+              <button (click)="deleteBook(book)" style="width: 12exs; margin-left: 20px;" class="btn btn-danger">Delete
+                &nbsp; <i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+
+
+      </table>
+
+
+      <div *ngIf="bookList.length === 0" class="alert alert-danger text-center alert-dismissible text-center fade show">
+        <strong></strong>No Record.
+        <button type="button" class="close" data-dismiss="alert"></button>
+      </div>
+
+
+      <!-- <button class="btn btn-secondary"> -->
+        <!-- <label>
+          <span class="mdi mdi-file-export"> </span>
+          <i class="fas fa-file-import"> </i>&nbsp;Import Book)
+          <input hidden type="file" (change)="onChange($event)" #inputFile multiple="false">
+        </label>
+      </button>
+      <br><br> -->
+
+      <button (click)="exportData('myTable')" class="btn btn-primary"><i class="fas fa-file-export"></i> &nbsp; Export
+        Book Data</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- the actual table being converted to xlxs -->
+  <table hidden id="myTable" class="table  table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><b>S/N</b></th>
+        <th><b>NAME</b></th>
+        <th><b>ISBN</b></th>
+        <th><b>NO OF PAGES</b></th>
+        <th><b>PUBLISHER</b></th>
+        <th><b>COUNTRY</b></th>
+        <th><b>RELEASED DATE</b></th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let book of bookList; let i = index">
+
+        <td>{{ i + 1 }}</td>
+        <td>{{ book?.name || "N/A" }}</td>
+        <td>{{ book?.isbn || "N/A" }}</td>
+        <td>{{ (book?.number_of_pages ) || 'N/A' }}</td>
+        <td>{{ (book?.publisher ) || 'N/A' }}</td>
+        <td>{{ (book?.country ) || 'N/A' }}</td>
+        <td>{{ (book.released | date ) || 'N/A' }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="#"> sydani.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
